@@ -4,26 +4,28 @@ import jakarta.persistence.*;
 
 @Entity
 public class ManagerPendingRequest {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private Long mobileNumber;
     private String panNumber;
     private String aadharNumber;
     private String emailId;
     private String accountType;
-
     private String city;
     private String state;
     private Long pinCode;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.PENDING; // Default is PENDING
+    private Status status = Status.PENDING;
 
     public enum Status {
         PENDING, APPROVED, REJECTED
     }
+
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] customerPhoto;
@@ -40,48 +42,7 @@ public class ManagerPendingRequest {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] panCard;
 
-
-    public byte[] getCustomerPhoto() {
-        return customerPhoto;
-    }
-
-    public void setCustomerPhoto(byte[] customerPhoto) {
-        this.customerPhoto = customerPhoto;
-    }
-
-    public byte[] getSignaturePhoto() {
-        return signaturePhoto;
-    }
-
-    public void setSignaturePhoto(byte[] signaturePhoto) {
-        this.signaturePhoto = signaturePhoto;
-    }
-
-    public byte[] getAadharCard() {
-        return aadharCard;
-    }
-
-    public void setAadharCard(byte[] aadharCard) {
-        this.aadharCard = aadharCard;
-    }
-
-    public byte[] getPanCard() {
-        return panCard;
-    }
-
-    public void setPanCard(byte[] panCard) {
-        this.panCard = panCard;
-    }
-
     private String remark;
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 
     public Long getId() {
         return id;
@@ -99,7 +60,13 @@ public class ManagerPendingRequest {
         this.name = name;
     }
 
+    public Long getMobileNumber() {
+        return mobileNumber;
+    }
 
+    public void setMobileNumber(Long mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
 
     public String getPanNumber() {
         return panNumber;
@@ -149,15 +116,6 @@ public class ManagerPendingRequest {
         this.state = state;
     }
 
-
-    public Long getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(Long mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
     public Long getPinCode() {
         return pinCode;
     }
@@ -174,6 +132,45 @@ public class ManagerPendingRequest {
         this.status = status;
     }
 
+    public byte[] getCustomerPhoto() {
+        return customerPhoto;
+    }
+
+    public void setCustomerPhoto(byte[] customerPhoto) {
+        this.customerPhoto = customerPhoto;
+    }
+
+    public byte[] getSignaturePhoto() {
+        return signaturePhoto;
+    }
+
+    public void setSignaturePhoto(byte[] signaturePhoto) {
+        this.signaturePhoto = signaturePhoto;
+    }
+
+    public byte[] getAadharCard() {
+        return aadharCard;
+    }
+
+    public void setAadharCard(byte[] aadharCard) {
+        this.aadharCard = aadharCard;
+    }
+
+    public byte[] getPanCard() {
+        return panCard;
+    }
+
+    public void setPanCard(byte[] panCard) {
+        this.panCard = panCard;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     @Override
     public String toString() {

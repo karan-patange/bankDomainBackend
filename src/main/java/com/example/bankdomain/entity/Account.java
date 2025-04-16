@@ -8,81 +8,35 @@ import java.util.List;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accId;
 
-    private  String accType;
+    private String accType;
 
     private double balance;
 
     private String accNo;
 
-    public List<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
-    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name="FK_cust")
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_cust")
     @JsonIgnore
-    Customer customer;
+    private Customer customer;
 
-//    @OneToMany(mappedBy = "account",cascade = CascadeType.ALL)
-//    @JsonManagedReference
-//    List<Transaction> transactions;
-
-
-
-
-
-
-
-
-
-
-
-    @OneToMany(mappedBy ="account",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Transaction> transactions;
 
-
-    @OneToMany(mappedBy ="account",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Statement> statements;
 
-
-    @OneToMany(mappedBy ="account",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Withdrawal> withdrawals;
 
-
-    public List<Statement> getStatements() {
-        return statements;
-    }
-
-    public void setStatements(List<Statement> statements) {
-        this.statements = statements;
-    }
-
-    public List<Withdrawal> getWithdrawals() {
-        return withdrawals;
-    }
-
-    public void setWithdrawals(List<Withdrawal> withdrawals) {
-        this.withdrawals = withdrawals;
-    }
-
-    public String getAccNo() {
-        return accNo;
-    }
-
-    public void setAccNo(String accNo) {
-        this.accNo = accNo;
-    }
+    // Getters and Setters
 
     public Long getAccId() {
         return accId;
@@ -108,6 +62,14 @@ public class Account {
         this.balance = balance;
     }
 
+    public String getAccNo() {
+        return accNo;
+    }
+
+    public void setAccNo(String accNo) {
+        this.accNo = accNo;
+    }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -115,6 +77,32 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public List<Statement> getStatements() {
+        return statements;
+    }
+
+    public void setStatements(List<Statement> statements) {
+        this.statements = statements;
+    }
+
+    public List<Withdrawal> getWithdrawals() {
+        return withdrawals;
+    }
+
+    public void setWithdrawals(List<Withdrawal> withdrawals) {
+        this.withdrawals = withdrawals;
+    }
+
+    // toString Method
 
     @Override
     public String toString() {

@@ -2,8 +2,6 @@ package com.example.bankdomain.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Arrays;
-
 @Entity
 public class BranchPendingRequest {
 
@@ -20,9 +18,7 @@ public class BranchPendingRequest {
     private String city;
     private String state;
     private Long pinCode;
-
     private String remark;
-
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -47,46 +43,7 @@ public class BranchPendingRequest {
         PENDING, APPROVED, REJECTED
     }
 
-
-    public byte[] getCustomerPhoto() {
-        return customerPhoto;
-    }
-
-    public void setCustomerPhoto(byte[] customerPhoto) {
-        this.customerPhoto = customerPhoto;
-    }
-
-    public byte[] getSignaturePhoto() {
-        return signaturePhoto;
-    }
-
-    public void setSignaturePhoto(byte[] signaturePhoto) {
-        this.signaturePhoto = signaturePhoto;
-    }
-
-    public byte[] getAadharCard() {
-        return aadharCard;
-    }
-
-    public void setAadharCard(byte[] aadharCard) {
-        this.aadharCard = aadharCard;
-    }
-
-    public byte[] getPanCard() {
-        return panCard;
-    }
-
-    public void setPanCard(byte[] panCard) {
-        this.panCard = panCard;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -168,6 +125,46 @@ public class BranchPendingRequest {
         this.pinCode = pinCode;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public byte[] getCustomerPhoto() {
+        return customerPhoto;
+    }
+
+    public void setCustomerPhoto(byte[] customerPhoto) {
+        this.customerPhoto = customerPhoto;
+    }
+
+    public byte[] getSignaturePhoto() {
+        return signaturePhoto;
+    }
+
+    public void setSignaturePhoto(byte[] signaturePhoto) {
+        this.signaturePhoto = signaturePhoto;
+    }
+
+    public byte[] getAadharCard() {
+        return aadharCard;
+    }
+
+    public void setAadharCard(byte[] aadharCard) {
+        this.aadharCard = aadharCard;
+    }
+
+    public byte[] getPanCard() {
+        return panCard;
+    }
+
+    public void setPanCard(byte[] panCard) {
+        this.panCard = panCard;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -175,6 +172,8 @@ public class BranchPendingRequest {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    // toString method
 
     @Override
     public String toString() {

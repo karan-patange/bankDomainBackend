@@ -1,6 +1,5 @@
 package com.example.bankdomain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,22 +10,12 @@ public class Login {
     private Long loginId;
 
     private String accountNumber;
-
     private String passWord;
-
+    private String role;
 
     @OneToOne
-    @JoinColumn(name = "Customer_id", referencedColumnName ="id")
+    @JoinColumn(name = "Customer_id", referencedColumnName = "id")
     private Customer customer;
-
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public Long getLoginId() {
         return loginId;
@@ -52,6 +41,21 @@ public class Login {
         this.passWord = passWord;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     @Override
     public String toString() {
@@ -59,6 +63,7 @@ public class Login {
                 "loginId=" + loginId +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", passWord='" + passWord + '\'' +
+                ", role='" + role + '\'' +
                 ", customer=" + customer +
                 '}';
     }

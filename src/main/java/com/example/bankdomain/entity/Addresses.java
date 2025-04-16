@@ -5,21 +5,21 @@ import jakarta.persistence.*;
 
 @Entity
 public class Addresses {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int addId;
 
     private String city;
-
-    private  String state;
-
+    private String state;
     private long pinCode;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "FK_customer")
-    Customer customer;
+    private Customer customer;
 
+    // Getters and Setters
 
     public int getAddId() {
         return addId;
@@ -50,13 +50,11 @@ public class Addresses {
     }
 
     public void setPinCode(long pinCode) {
-
         String pin = String.valueOf(pinCode);
-        if (!pin.matches("^\\d{6}$")){
+        if (!pin.matches("^\\d{6}$")) {
             throw new RuntimeException("PIN code must have 6 digits only");
-        } this.pinCode = pinCode;
-
-
+        }
+        this.pinCode = pinCode;
     }
 
     public Customer getCustomer() {
@@ -66,6 +64,8 @@ public class Addresses {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    // toString Method
 
     @Override
     public String toString() {

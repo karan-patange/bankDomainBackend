@@ -42,6 +42,6 @@ public interface CustomerService {
 
 
 
-
+public String changePassword(String accountNumber,String password);
 
 }

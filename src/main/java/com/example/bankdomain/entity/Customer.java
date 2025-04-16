@@ -5,21 +5,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-
 import java.util.List;
-
-
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    public class Customer {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-       // @Column(name="cus_Id")
-        private Long id;
+public class Customer {
 
-    @Column(name="cus_name")
-        private String customerName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "cus_name")
+    private String customerName;
 
     @Lob
     @Column(columnDefinition = "LONGBLOB")
@@ -37,59 +34,42 @@ import java.util.List;
     @Column(columnDefinition = "LONGBLOB")
     private byte[] panCardpdf;
 
-
-
-        private Long mobileNumber;
-
-
-        private String panCard;
-
-//    @Transient
+    private Long mobileNumber;
+    private String panCard;
     private boolean deleteCustomer;
-
     private String adharcard;
-
     private String emailId;
 
-    public Customer(String name, String mobileNumber, String panNumber, String aadharNumber, String accountType, String city, String state, String pinCode) {
-    }
-
-    public Customer() {
-
-    }
-
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_account" )
-    Account account;
-
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_account")
+    private Account account;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     @JsonIgnore
-    List<Addresses> addresses;
+    private List<Addresses> addresses;
 
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Login login;
 
-    public String getAdharcard() {
-        return adharcard;
+    public Customer() {}
+
+    public Customer(String name, String mobileNumber, String panNumber, String aadharNumber, String accountType, String city, String state, String pinCode) {}
+
+    public Long getId() {
+        return id;
     }
 
-    public void setAdharcard(String adharcard) {
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-//        if (adharcard == null || !adharcard.matches("\\d{12}")) {
-//            throw new IllegalArgumentException("Invalid Aadhaar number! It must be exactly 12 digits and contain only numbers.");
-//        }
-        this.adharcard = adharcard;
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public byte[] getCustomerPhoto() {
@@ -124,56 +104,9 @@ import java.util.List;
         this.panCardpdf = panCardpdf;
     }
 
-    public Account getAccount() {
-        return account;
+    public Long getMobileNumber() {
+        return mobileNumber;
     }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-
-    public boolean isDeleteCustomer() {
-        return deleteCustomer;
-    }
-
-    public void setDeleteCustomer(boolean deleteCustomer) {
-        this.deleteCustomer = deleteCustomer;
-    }
-
-    public Long getId() {
-            return id;
-        }
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getCustomerName() {
-            return customerName;
-        }
-
-        public void setCustomerName(String customerName) {
-            this.customerName = customerName;
-
-
-        }
-
-
-
-        public Long getMobileNumber() {
-            return mobileNumber;
-        }
-
-//        public void setMobileNumber(Long mobileNumber) {
-//
-//        //this.mobileNumber = mobileNumber;
-//        String sn = String.valueOf(mobileNumber);
-//        if (!sn.matches("^[6-9]\\d{9}$")){
-//            throw new RuntimeException("Kindly Enter Valid Mobile Number...!!!");
-//
-//        }this.mobileNumber = mobileNumber;
-//
-
 
     public void setMobileNumber(Long mobileNumber) {
         this.mobileNumber = mobileNumber;
@@ -184,14 +117,43 @@ import java.util.List;
     }
 
     public void setPanCard(String panCard) {
-        // this.panCard = panCard;
-        if(panCard.length()>9){
+        if (panCard.length() > 9) {
             this.panCard = panCard;
-        }
-        else {
+        } else {
             throw new RuntimeException("Your PAN Card Number Not matched to length !!");
         }
+    }
 
+    public boolean isDeleteCustomer() {
+        return deleteCustomer;
+    }
+
+    public void setDeleteCustomer(boolean deleteCustomer) {
+        this.deleteCustomer = deleteCustomer;
+    }
+
+    public String getAdharcard() {
+        return adharcard;
+    }
+
+    public void setAdharcard(String adharcard) {
+        this.adharcard = adharcard;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public List<Addresses> getAddresses() {
@@ -208,8 +170,6 @@ import java.util.List;
 
     public void setLogin(Login login) {
         this.login = login;
-        //login.setCustomer(this);
-
     }
 
     @Override
@@ -228,5 +188,3 @@ import java.util.List;
                 '}';
     }
 }
-
-

@@ -12,42 +12,22 @@ public class Statement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-   private String accountNumber ;
-
-   private String transactionType;
-
-   private Double amount;
-
+    private String accountNumber;
+    private String transactionType;
+    private Double amount;
     private LocalDateTime time;
-
-
-
-
-
-
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name="account_id")
+    @JoinColumn(name = "account_id")
     private Account account;
 
-
-
-
-    public Account getAccount() {
-        return account;
+    public Long getId() {
+        return id;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAccountNumber() {
@@ -56,14 +36,6 @@ public class Statement {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTransactionType() {
@@ -80,6 +52,22 @@ public class Statement {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
